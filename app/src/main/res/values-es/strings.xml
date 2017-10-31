@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VeganFoodie</string>
+    <string name="emailPlaceHolder">Escriba el email</string>
+    <string name="passPlaceHolder">Escriba la contraseña</string>
+    <string name="loginBtnTxt">INICIAR SESION</string>
+    <string name="signUpBtnTxt">REGISTRASE</string>
+</resources>

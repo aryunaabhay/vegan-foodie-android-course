@@ -8,31 +8,6 @@
     android:layout_margin="15dp"
     tools:context="vgan.veganfoodie.Modules.SignUp.SignUpActivity">
 
-
-    <EditText
-        android:id="@+id/nameField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/namePlaceHolder" />
-
-    <EditText
-        android:id="@+id/phoneField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="@string/phonePlaceHolder"
-        android:inputType="phone" />
-
-    <EditText
-        android:id="@+id/whyField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="@string/whyPlaceHolder"
-        android:inputType="textMultiLine" />
-
     <EditText
         android:id="@+id/emailField"
         android:layout_width="match_parent"

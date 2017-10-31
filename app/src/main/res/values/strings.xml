@@ -4,8 +4,4 @@
     <string name="passPlaceHolder">Insert password</string>
     <string name="loginBtnTxt">LOG IN</string>
     <string name="signUpBtnTxt">SIGN UP</string>
-
-    <string name="namePlaceHolder">Vegan name</string>
-    <string name="whyPlaceHolder">Why you like vegan food ?</string>
-    <string name="phonePlaceHolder">Phone number</string>
 </resources>
