@@ -12,7 +12,6 @@
         android:id="@+id/emailField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="@string/emailPlaceHolder"
         android:inputType="textEmailAddress" />
 
@@ -20,13 +19,20 @@
         android:id="@+id/passwordField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="@string/passPlaceHolder"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/passwordConfirmationField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/passConfirmationPlaceHolder"
         android:inputType="textPassword" />
 
     <Button
         android:id="@+id/signUpBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/signUpBtnTxt" />
+        android:text="@string/signUpBtnTxt"
+        android:onClick="signUpUser" />
 </LinearLayout>

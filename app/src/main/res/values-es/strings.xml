@@ -3,6 +3,7 @@
     <string name="app_name">Vegano</string>
     <string name="emailPlaceHolder">Escriba el email</string>
     <string name="passPlaceHolder">Escriba la contraseña</string>
+    <string name="passConfirmationPlaceHolder">Confirme contraseña</string>
     <string name="loginBtnTxt">INICIAR SESION</string>
     <string name="signUpBtnTxt">REGISTRASE</string>
 </resources>

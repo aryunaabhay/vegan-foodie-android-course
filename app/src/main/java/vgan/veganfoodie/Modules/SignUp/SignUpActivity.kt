@@ -2,6 +2,7 @@ package vgan.veganfoodie.Modules.SignUp
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import vgan.veganfoodie.Interfaces.BaseActivity
 import vgan.veganfoodie.Interfaces.ViewModel
@@ -13,6 +14,10 @@ class SignUpActivity : AppCompatActivity(), BaseActivity {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+    }
+
+    fun signUpUser(view: View){
+        //TODO: sign up 
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
