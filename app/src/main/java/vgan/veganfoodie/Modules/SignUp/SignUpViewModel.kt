@@ -7,5 +7,9 @@ import vgan.veganfoodie.Interfaces.ViewModel
  */
 
 class SignUpViewModel: ViewModel {
+    companion object {
+        val emailTxtIdentifier = "emailTxt"
+        val passTxtIdentifier = "passTxt"
+    }
 
 }
