@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity(), BaseActivity {
     }
 
     fun login(view: View){
-        val loginResult = (this.viewModel as? LoginViewModel)?.login(this.emailField.text.toString(), this.passwordField.text.toString())
+        val loginResult = (this.viewModel as? LoginViewModel)?.login(this.email_field.text.toString(), this.password_field.text.toString())
         if(loginResult ?: false){
             //TODO: Intent to the main screen of the app
         }else{
@@ -32,14 +32,14 @@ class LoginActivity : AppCompatActivity(), BaseActivity {
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.putString(LoginViewModel.emailTxtIdentifier, this.emailField.text.toString())
-        outState?.putString(LoginViewModel.passTxtIdentifier, this.passwordField.text.toString())
+        outState?.putString(LoginViewModel.emailTxtIdentifier, this.email_field.text.toString())
+        outState?.putString(LoginViewModel.passTxtIdentifier, this.password_field.text.toString())
         super.onSaveInstanceState(outState)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        this.emailField.setText(savedInstanceState?.getString(LoginViewModel.emailTxtIdentifier))
-        this.passwordField.setText(savedInstanceState?.getString(LoginViewModel.passTxtIdentifier))
+        this.email_field?.setText(savedInstanceState?.getString(LoginViewModel.emailTxtIdentifier) ?: "")
+        this.password_field?.setText(savedInstanceState?.getString(LoginViewModel.passTxtIdentifier) ?: "")
     }
 }

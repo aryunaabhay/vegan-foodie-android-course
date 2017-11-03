@@ -17,18 +17,18 @@ class SignUpActivity : AppCompatActivity(), BaseActivity {
     }
 
     fun signUpUser(view: View){
-        //TODO: sign up 
+        //TODO: sign up
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.putString(SignUpViewModel.emailTxtIdentifier, this.emailField.text.toString())
-        outState?.putString(SignUpViewModel.passTxtIdentifier, this.passwordField.text.toString())
+        outState?.putString(SignUpViewModel.emailTxtIdentifier, this.email_field.text.toString())
+        outState?.putString(SignUpViewModel.passTxtIdentifier, this.password_field.text.toString())
         super.onSaveInstanceState(outState)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        this.emailField.setText(savedInstanceState?.getString(SignUpViewModel.emailTxtIdentifier))
-        this.passwordField.setText(savedInstanceState?.getString(SignUpViewModel.passTxtIdentifier))
+        this.email_field?.setText(savedInstanceState?.getString(SignUpViewModel.emailTxtIdentifier) ?: "")
+        this.password_field?.setText(savedInstanceState?.getString(SignUpViewModel.passTxtIdentifier) ?: "" )
     }
 }
