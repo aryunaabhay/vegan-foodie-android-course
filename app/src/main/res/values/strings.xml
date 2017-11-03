@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">VeganFoodie</string>
+    <string name="emailPlaceHolder">Insert email</string>
+    <string name="passPlaceHolder">Insert password</string>
+    <string name="passConfirmationPlaceHolder">Confirm password</string>
+    <string name="loginBtnTxt">LOG IN</string>
+    <string name="signUpBtnTxt">SIGN UP</string>
 </resources>
