@@ -6,3 +6,7 @@ package vgan.veganfoodie.Utilities
 class Result(var state: Boolean, var message: String) {
 
 }
+
+enum class PersistanceType {
+    SharedPref, Sqlite, Realm
+}

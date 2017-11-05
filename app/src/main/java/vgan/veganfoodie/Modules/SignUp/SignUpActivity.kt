@@ -20,7 +20,7 @@ class SignUpActivity : AppCompatActivity(), BaseActivity {
     fun signUpUser(view: View){
         val email = this.email_field.text.toString()
         val password = this.password_field.text.toString()
-        val signUpResult = (this.viewModel as? SignUpViewModel)?.signup(email, password, this.applicationContext)
+        val signUpResult = (this.viewModel as? SignUpViewModel)?.signup(email, password)
         if (signUpResult != null) {
             Toast.makeText(this.applicationContext, signUpResult.message, Toast.LENGTH_SHORT).show()
         }

@@ -11,6 +11,6 @@
     <string name="login_incorrect_message">email or password incorrect</string>
     <string name="login_sucess_message">Welcome </string>
 
-    <string name="signup_incorrect_message">Succesfully signed up</string>
-    <string name="signup_sucess_message">There was an error while signing you up, try again</string>
+    <string name="signup_incorrect_message">There was an error while signing you up, try again</string>
+    <string name="signup_sucess_message">Succesfully signed up</string>
 </resources>

@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity(), BaseActivity {
     fun login(view: View){
         val email = this.email_field.text.toString()
         val password = this.password_field.text.toString()
-        val loginResult: Result? = (this.viewModel as? LoginViewModel)?.login(email, password ,this.applicationContext)
+        val loginResult: Result? = (this.viewModel as? LoginViewModel)?.login(email, password)
         if (loginResult != null) {
             Toast.makeText(this.applicationContext, loginResult.message, Toast.LENGTH_SHORT).show()
         }

@@ -1,6 +1,6 @@
 package vgan.veganfoodie.Modules.SignUp
 
-import android.content.Context
+import vgan.veganfoodie.AppDelegate
 import vgan.veganfoodie.Entities.User
 import vgan.veganfoodie.Interfaces.ViewModel
 import vgan.veganfoodie.R
@@ -16,10 +16,11 @@ class SignUpViewModel: ViewModel {
         val passTxtIdentifier = "passTxt"
     }
 
-    fun signup(email: String, password: String, ctx: Context): Result {
-        if(email== "" || password == "") { return  Result(false, ctx.resources.getString(R.string.missing_info_message) ) }
-        var isSignedUp = User.signUp(email, password, ctx)
-        var message = if (isSignedUp)  ctx.resources.getString(R.string.signup_sucess_message) else  ctx.resources.getString(R.string.signup_incorrect_message)
+    fun signup(email: String, password: String): Result {
+        var appCtx = AppDelegate.instance.applicationContext
+        if(email== "" || password == "") { return  Result(false, appCtx.resources.getString(R.string.missing_info_message) ) }
+        var isSignedUp = User.signUp(email, password)
+        var message = if (isSignedUp) appCtx.resources.getString(R.string.signup_sucess_message) else appCtx.resources.getString(R.string.signup_incorrect_message)
         return Result(isSignedUp, message)
     }
 
