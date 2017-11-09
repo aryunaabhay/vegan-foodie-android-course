@@ -13,6 +13,9 @@ class User {
 
 
     companion object {
+        val emailKey: String = "email"
+        val passwordKey: String = "password"
+
         fun signUp(email: String, password: String): Boolean {
             when (AppDelegate.instance.viewModel.persistanceType) {
                 PersistanceType.SharedPref -> return User.signUpOnSharedPref(email, password)
@@ -29,27 +32,24 @@ class User {
         //Shared Preferences
         fun signUpOnSharedPref(email: String, password: String): Boolean{
             var pref = AppDelegate.instance.viewModel.appPref
-            var result = false
             if (pref != null) {
                 var prefEditor = pref.edit()
-                prefEditor.putString("username", email)
-                prefEditor.putString("pass", password)
-                val commitResult = prefEditor.commit()
-                result = commitResult
+                prefEditor.putString(User.emailKey, email.toLowerCase())
+                prefEditor.putString(User.passwordKey, password)
+                prefEditor.apply()
+                return true
             }
-            return result
+            return false
         }
 
         fun loginOnSharedPref(email: String, password: String): Boolean{
             var pref = AppDelegate.instance.viewModel.appPref
-            var result = false
             if (pref != null) {
-                val emailFromPref = pref.getString("username", "")
-                val passFromPref = pref.getString("pass", "")
-                val loginResult = emailFromPref == email && passFromPref == password
-                result = loginResult
+                val emailFromPref = pref.getString(emailKey, "")
+                val passFromPref = pref.getString(passwordKey, "")
+                return emailFromPref == email && passFromPref == password
             }
-            return result
+            return false
         }
     }
 }

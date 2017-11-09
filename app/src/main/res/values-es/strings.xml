@@ -10,7 +10,7 @@
     <!-- Messages -->
     <string name="missing_info_message">Debes insertar email y contraseña</string>
     <string name="login_incorrect_message">correo o contraseña incorrecta</string>
-    <string name="login_sucess_message">Bienvenido </string>
+    <string name="login_sucess_message">Bienvenido %s</string>
 
     <string name="signup_incorrect_message">Has sido registrado exitosamente</string>
     <string name="signup_sucess_message">Hubo un error en el registro, intenta de nuevo</string>

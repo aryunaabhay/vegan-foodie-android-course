@@ -18,9 +18,9 @@ class SignUpViewModel: ViewModel {
 
     fun signup(email: String, password: String): Result {
         var appCtx = AppDelegate.instance.applicationContext
-        if(email== "" || password == "") { return  Result(false, appCtx.resources.getString(R.string.missing_info_message) ) }
+        if(email.isEmpty() || password.isEmpty()) { return  Result(false, appCtx.getString(R.string.missing_info_message) ) }
         var isSignedUp = User.signUp(email, password)
-        var message = if (isSignedUp) appCtx.resources.getString(R.string.signup_sucess_message) else appCtx.resources.getString(R.string.signup_incorrect_message)
+        var message = if (isSignedUp) appCtx.getString(R.string.signup_sucess_message) else appCtx.getString(R.string.signup_incorrect_message)
         return Result(isSignedUp, message)
     }
 
