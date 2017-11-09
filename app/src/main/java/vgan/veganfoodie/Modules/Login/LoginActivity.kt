@@ -3,11 +3,14 @@ package vgan.veganfoodie.Modules.Login
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import kotlinx.android.synthetic.main.activity_login_acivity.*
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_login.*
 import vgan.veganfoodie.Interfaces.BaseActivity
 import vgan.veganfoodie.Interfaces.ViewModel
 import vgan.veganfoodie.Modules.SignUp.SignUpRouter
 import vgan.veganfoodie.R
+import vgan.veganfoodie.Utilities.Result
+
 
 class LoginActivity : AppCompatActivity(), BaseActivity {
 
@@ -15,15 +18,15 @@ class LoginActivity : AppCompatActivity(), BaseActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_acivity)
+        setContentView(R.layout.activity_login)
     }
 
     fun login(view: View){
-        val loginResult = (this.viewModel as? LoginViewModel)?.login(this.email_field.text.toString(), this.password_field.text.toString())
-        if(loginResult ?: false){
-            //TODO: Intent to the main screen of the app
-        }else{
-            //TODO: Show error
+        val email = this.email_field.text.toString()
+        val password = this.password_field.text.toString()
+        val loginResult: Result? = (this.viewModel as? LoginViewModel)?.login(email, password)
+        if (loginResult != null) {
+            Toast.makeText(this.applicationContext, loginResult.message, Toast.LENGTH_SHORT).show()
         }
     }
 

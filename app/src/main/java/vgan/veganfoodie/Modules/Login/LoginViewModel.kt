@@ -1,8 +1,10 @@
 package vgan.veganfoodie.Modules.Login
 
-import vgan.veganfoodie.Entities.AppState
+import vgan.veganfoodie.AppDelegate
 import vgan.veganfoodie.Entities.User
 import vgan.veganfoodie.Interfaces.ViewModel
+import vgan.veganfoodie.R
+import vgan.veganfoodie.Utilities.Result
 
 /**
  * Created by aryuna on 10/18/17.
@@ -15,14 +17,17 @@ class LoginViewModel: ViewModel {
         val passTxtIdentifier = "passTxt"
     }
 
-    fun login(email: String, password: String): Boolean {
-        val loggedIn = email == "aryunadas@gmail.com" && password == "vegnfoodie2017"
+    fun login(email: String, password: String): Result {
+        var appCtx = AppDelegate.instance.applicationContext
+        if(email.isEmpty() || password.isEmpty()) { return Result(false, appCtx.getString(R.string.missing_info_message) ) }
+        val loggedIn = User.login(email, password)
         if (loggedIn) {
             var loggeUser = User()
             loggeUser.email = email
             loggeUser.password = password
-            AppState.user = loggeUser
+            AppDelegate.instance.viewModel.user = loggeUser
         }
-        return loggedIn
+        var message = if(loggedIn) appCtx.getString(R.string.login_sucess_message, " " + email) else appCtx.getString(R.string.login_incorrect_message)
+        return Result(loggedIn, message)
     }
 }
