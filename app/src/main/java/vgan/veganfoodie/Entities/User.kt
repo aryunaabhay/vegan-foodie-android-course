@@ -2,16 +2,20 @@ package vgan.veganfoodie.Entities
 
 import android.content.ContentValues
 import android.database.Cursor
+import io.realm.Realm
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
+import io.realm.annotations.Required
 import vgan.veganfoodie.AppDelegate
 import vgan.veganfoodie.Utilities.PersistanceType
 
 /**
  * Created by aryuna on 10/27/17.
  */
-class User {
-    var id: Int = 0
-    var email: String = ""
-    var password: String = ""
+open class User: RealmObject() {
+    @PrimaryKey var id: Int = 0
+    @Required var email: String = ""
+    @Required var password: String = ""
 
     companion object {
         val TABLE_KEY = "Users"
@@ -23,15 +27,43 @@ class User {
             when (AppDelegate.instance.viewModel.persistanceType) {
                 PersistanceType.SharedPref -> return User.signUpOnSharedPref(email, password)
                 PersistanceType.Sqlite -> return User.signUpOnSqlite(email, password)
-                PersistanceType.Realm -> return false
+                PersistanceType.Realm -> return User.signUpOnRealm(email, password)
             }
         }
         fun login(email: String, password: String): Boolean {
             when (AppDelegate.instance.viewModel.persistanceType) {
                 PersistanceType.SharedPref -> return User.loginOnSharedPref(email, password)
                 PersistanceType.Sqlite -> return User.loginOnSqlite(email, password)
-                PersistanceType.Realm -> return false
+                PersistanceType.Realm -> return User.loginOnRealm(email, password)
             }
+        }
+
+        //REALM
+        fun signUpOnRealm(email: String, password: String): Boolean {
+            val realm = Realm.getDefaultInstance()
+            try {
+                realm.executeTransaction {
+                    var user = realm.createObject(User::class.java, 20)
+                    user.email = email
+                    user.password = password
+                }
+            } finally {
+                realm.close()
+            }
+            return true
+        }
+
+        fun loginOnRealm(email: String, password: String): Boolean{
+            val realm = Realm.getDefaultInstance()
+            var user: User? = null
+            try {
+                realm.executeTransaction {
+                    user = realm.where(User::class.java).equalTo(User.EMAIL_KEY, email).equalTo(User.PASSWORD_KEY, password).findFirst()
+                }
+            } finally {
+                realm.close();
+            }
+            return user != null
         }
 
         //SQLITE
