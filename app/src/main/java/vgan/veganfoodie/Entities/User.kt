@@ -2,11 +2,15 @@ package vgan.veganfoodie.Entities
 
 import android.content.ContentValues
 import android.database.Cursor
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 import io.realm.Realm
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required
 import vgan.veganfoodie.AppDelegate
+import vgan.veganfoodie.Networking.HTTPVerb
+import vgan.veganfoodie.Networking.Networking
 import vgan.veganfoodie.Utilities.PersistanceType
 
 /**
@@ -16,6 +20,8 @@ open class User: RealmObject() {
     @PrimaryKey var id: Int = 0
     @Required var email: String = ""
     @Required var password: String = ""
+    @SerializedName("body")
+    @Required var description: String = ""
 
     companion object {
         val TABLE_KEY = "Users"
@@ -36,6 +42,17 @@ open class User: RealmObject() {
                 PersistanceType.Sqlite -> return User.loginOnSqlite(email, password)
                 PersistanceType.Realm -> return User.loginOnRealm(email, password)
             }
+        }
+
+        fun loginOnServer(email: String, password: String, completion: (user: User?) -> Unit ) {
+            Networking.request(HTTPVerb.GET, "https://jsonplaceholder.typicode.com/posts/1", { json -> Unit
+                if json != null {
+                    val user = Gson().fromJson(json, User::class.java) as? User
+                    completion(user)
+                }else{
+                    completion(null)
+                }
+            })
         }
 
         //REALM
