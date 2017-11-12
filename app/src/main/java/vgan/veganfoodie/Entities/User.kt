@@ -46,7 +46,7 @@ open class User: RealmObject() {
 
         fun loginOnServer(email: String, password: String, completion: (user: User?) -> Unit ) {
             Networking.request(HTTPVerb.GET, "https://jsonplaceholder.typicode.com/posts/1", { json -> Unit
-                if json != null {
+                if (json != null) {
                     val user = Gson().fromJson(json, User::class.java) as? User
                     completion(user)
                 }else{

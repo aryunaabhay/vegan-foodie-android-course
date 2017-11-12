@@ -22,7 +22,7 @@ enum class HTTPVerb {
 
 class Networking {
     companion object {
-        fun request(verb: HTTPVerb, urlString: String, completion: requestResponse {
+        fun request(verb: HTTPVerb, urlString: String, completion: requestResponse) {
             var req = ServerRequest()
             req.url = URI.create(urlString).toURL()
             req.completion = completion
