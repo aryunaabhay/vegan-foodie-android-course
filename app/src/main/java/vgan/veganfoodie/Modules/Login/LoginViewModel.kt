@@ -27,7 +27,7 @@ class LoginViewModel: ViewModel {
             loggeUser.password = password
             AppDelegate.instance.viewModel.user = loggeUser
         }
-        var message = if(loggedIn) appCtx.getString(R.string.login_sucess_message, " " + email) else appCtx.getString(R.string.login_incorrect_message)
+        var message = if(loggedIn) appCtx.getString(R.string.login_sucess_message, email) else appCtx.getString(R.string.login_incorrect_message)
         return Result(loggedIn, message)
     }
 }
