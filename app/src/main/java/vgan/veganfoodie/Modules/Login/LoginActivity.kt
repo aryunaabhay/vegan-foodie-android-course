@@ -7,9 +7,9 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import vgan.veganfoodie.Interfaces.BaseActivity
 import vgan.veganfoodie.Interfaces.ViewModel
+import vgan.veganfoodie.Modules.Dashboard.DashboardRouter
 import vgan.veganfoodie.Modules.SignUp.SignUpRouter
 import vgan.veganfoodie.R
-import vgan.veganfoodie.Utilities.Result
 
 
 class LoginActivity : AppCompatActivity(), BaseActivity {
@@ -24,10 +24,14 @@ class LoginActivity : AppCompatActivity(), BaseActivity {
     fun login(view: View){
         val email = this.email_field.text.toString()
         val password = this.password_field.text.toString()
-        val loginResult: Result? = (this.viewModel as? LoginViewModel)?.login(email, password)
-        if (loginResult != null) {
-            Toast.makeText(this.applicationContext, loginResult.message, Toast.LENGTH_SHORT).show()
-        }
+        (this.viewModel as? LoginViewModel)?.login(email, password,{ result -> Unit
+            if (result != null) {
+                Toast.makeText(this.applicationContext, result.message, Toast.LENGTH_SHORT).show()
+                if (result.state == true) {
+                    DashboardRouter.dashboard(this)
+                }
+            }
+        })
     }
 
     fun goToSignUpScreen(view: View){

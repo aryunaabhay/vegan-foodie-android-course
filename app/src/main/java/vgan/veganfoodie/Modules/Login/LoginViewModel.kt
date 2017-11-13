@@ -17,17 +17,14 @@ class LoginViewModel: ViewModel {
         val passTxtIdentifier = "passTxt"
     }
 
-    fun login(email: String, password: String): Result {
+    fun login(email: String, password: String, completion: (result: Result) -> Unit ) {
         var appCtx = AppDelegate.instance.applicationContext
-        if(email.isEmpty() || password.isEmpty()) { return Result(false, appCtx.getString(R.string.missing_info_message) ) }
-        val loggedIn = User.login(email, password)
-        if (loggedIn) {
-            var loggeUser = User()
-            loggeUser.email = email
-            loggeUser.password = password
-            AppDelegate.instance.viewModel.user = loggeUser
-        }
-        var message = if(loggedIn) appCtx.getString(R.string.login_sucess_message, email) else appCtx.getString(R.string.login_incorrect_message)
-        return Result(loggedIn, message)
+        if(email.isEmpty() || password.isEmpty()) {  completion( Result(false, appCtx.getString(R.string.missing_info_message) ) ) }
+        User.loginOnServer(email, password, { user -> Unit
+            val loggedIn = user != null
+            var message = if(loggedIn) appCtx.getString(R.string.login_sucess_message, email) else appCtx.getString(R.string.login_incorrect_message)
+            AppDelegate.instance.viewModel.user = user
+            completion(Result(loggedIn, message))
+        })
     }
 }
