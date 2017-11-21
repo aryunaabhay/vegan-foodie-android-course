@@ -9,6 +9,7 @@ import io.realm.RealmConfiguration
 import vgan.veganfoodie.Entities.DbHelper
 import vgan.veganfoodie.Entities.User
 import vgan.veganfoodie.Interfaces.ViewModel
+import vgan.veganfoodie.Managers.RetroFitManager
 import vgan.veganfoodie.Utilities.PersistanceType
 
 
@@ -45,5 +46,6 @@ class AppViewModel: ViewModel {
         Realm.init(safeCtx)
         val config = RealmConfiguration.Builder().name("myrealm.realm").build()
         val myRealm = Realm.getInstance(config)
+        RetroFitManager.init()
     }
 }
