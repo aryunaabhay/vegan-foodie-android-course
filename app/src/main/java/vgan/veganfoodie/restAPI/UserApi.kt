@@ -16,9 +16,10 @@ interface UserAPI {
 
     companion object {
         const val ROOT = "users"
+        const val login = "/login"
     }
 
-    @POST(UserAPI.ROOT)
+    @POST(UserAPI.ROOT + UserAPI.login)
     fun login(@Query("email") email: String,
               @Query("password") password: String): Call<User>
 
