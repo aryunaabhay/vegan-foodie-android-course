@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Modules.SignUp.SignUpActivity" />
-        <activity android:name=".Modules.Dashboard.DashboardActivity"></activity>
+        <activity android:name=".Modules.Dashboard.DashboardActivity" />
     </application>
 
 </manifest>
