@@ -8,7 +8,7 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import vgan.veganfoodie.Entities.DbHelper
 import vgan.veganfoodie.Entities.User
-import vgan.veganfoodie.Interfaces.ViewModel
+import vgan.veganfoodie.Interfaces.AppViewModel
 import vgan.veganfoodie.Managers.RetroFitManager
 import vgan.veganfoodie.Utilities.PersistanceType
 
@@ -32,7 +32,7 @@ class AppDelegate: Application() {
     }
 }
 
-class AppViewModel: ViewModel {
+class AppViewModel: AppViewModel {
     var persistanceType: PersistanceType = PersistanceType.Realm
     val preferencesId = "AppPreferences"
     var user: User? = null

@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".Modules.SignUp.SignUpActivity" />
         <activity android:name=".Modules.Dashboard.DashboardActivity" />
-        <activity android:name=".Modules.Restaurants.RestaurantsActivity"></activity>
+        <activity android:name=".Modules.Restaurants.RestaurantsActivity" />
+        <activity android:name=".Modules.RestaurantDetail.container.RestaurantDetailActivity"></activity>
     </application>
 
 </manifest>

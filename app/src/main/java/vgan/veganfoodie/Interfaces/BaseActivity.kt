@@ -5,9 +5,9 @@ package vgan.veganfoodie.Interfaces
  */
 
 interface BaseActivity {
-    var viewModel: ViewModel
+    var viewModel: AppViewModel
 }
 
-interface ViewModel {
+interface AppViewModel {
 
 }

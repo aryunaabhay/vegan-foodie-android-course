@@ -14,6 +14,7 @@ import vgan.veganfoodie.R
 
 class RestaurantsListAdapter: RecyclerView.Adapter<RestaurantViewHolder>() {
     private var restaurants: List<Restaurant> = emptyList<Restaurant>()
+    var delegate: RestaurantsListAdapterDelegate? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_item_view, parent, false)
@@ -23,6 +24,9 @@ class RestaurantsListAdapter: RecyclerView.Adapter<RestaurantViewHolder>() {
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
         val restaurant = restaurants[position]
         holder.bind(restaurant)
+        holder.itemView.setOnClickListener {
+            this.delegate?.OnTapRestaurant(restaurant)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -36,19 +40,25 @@ class RestaurantsListAdapter: RecyclerView.Adapter<RestaurantViewHolder>() {
 
 }
 
+// restaurant view cell wrapper
 class RestaurantViewHolder(view: View): RecyclerView.ViewHolder(view) {
     lateinit var titleTxtView: TextView
     lateinit var descTxtView: TextView
 
     init {
         //this(view)
+        //binding properties with layout
         this.titleTxtView = view.findViewById<TextView>(R.id.restaurant_title_text)
         this.descTxtView = view.findViewById<TextView>(R.id.restaurant_specialty_text)
+
     }
 
     fun bind(restaurant: Restaurant) {
         this.titleTxtView.text = restaurant.name
         this.descTxtView.text = restaurant.specialty
-        //setOnClickListener { listener(item) }
     }
+}
+
+interface RestaurantsListAdapterDelegate {
+    fun OnTapRestaurant(restaurant: Restaurant)
 }

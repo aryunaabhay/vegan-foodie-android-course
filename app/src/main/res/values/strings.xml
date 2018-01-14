@@ -15,4 +15,7 @@
     <string name="signup_sucess_message">Succesfully signed up</string>
 
     <string name="goto_restaurants_txt">Show Restaurants</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

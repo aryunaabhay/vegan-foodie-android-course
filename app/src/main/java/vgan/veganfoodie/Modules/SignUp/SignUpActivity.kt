@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import vgan.veganfoodie.Interfaces.AppViewModel
 import vgan.veganfoodie.Interfaces.BaseActivity
-import vgan.veganfoodie.Interfaces.ViewModel
 import vgan.veganfoodie.R
 
 class SignUpActivity : AppCompatActivity(), BaseActivity {
-    override var viewModel: ViewModel = SignUpViewModel()
+    override var viewModel: AppViewModel = SignUpViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

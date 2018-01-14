@@ -1,8 +1,7 @@
 package vgan.veganfoodie.Modules.Login
 
 import vgan.veganfoodie.AppDelegate
-import vgan.veganfoodie.Entities.User
-import vgan.veganfoodie.Interfaces.ViewModel
+import vgan.veganfoodie.Interfaces.AppViewModel
 import vgan.veganfoodie.R
 import vgan.veganfoodie.Utilities.Result
 import vgan.veganfoodie.restAPI.UserService
@@ -12,7 +11,7 @@ import vgan.veganfoodie.restAPI.UserService
  */
 
 
-class LoginViewModel: ViewModel {
+class LoginViewModel: AppViewModel {
     companion object {
         val emailTxtIdentifier = "emailTxt"
         val passTxtIdentifier = "passTxt"

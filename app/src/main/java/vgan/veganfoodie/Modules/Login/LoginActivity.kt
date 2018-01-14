@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
+import vgan.veganfoodie.Interfaces.AppViewModel
 import vgan.veganfoodie.Interfaces.BaseActivity
-import vgan.veganfoodie.Interfaces.ViewModel
 import vgan.veganfoodie.Modules.Dashboard.DashboardRouter
 import vgan.veganfoodie.Modules.SignUp.SignUpRouter
 import vgan.veganfoodie.R
@@ -14,7 +14,7 @@ import vgan.veganfoodie.R
 
 class LoginActivity : AppCompatActivity(), BaseActivity {
 
-    override var viewModel: ViewModel = LoginViewModel()
+    override var viewModel: AppViewModel = LoginViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
