@@ -13,4 +13,6 @@
 
     <string name="signup_incorrect_message">There was an error while signing you up, try again</string>
     <string name="signup_sucess_message">Succesfully signed up</string>
+
+    <string name="goto_restaurants_txt">Show Restaurants</string>
 </resources>

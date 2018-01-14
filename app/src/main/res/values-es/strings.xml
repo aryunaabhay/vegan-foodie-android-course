@@ -14,4 +14,6 @@
 
     <string name="signup_incorrect_message">Has sido registrado exitosamente</string>
     <string name="signup_sucess_message">Hubo un error en el registro, intenta de nuevo</string>
+
+    <string name="goto_restaurants_txt">Ver restaurantes</string>
 </resources>

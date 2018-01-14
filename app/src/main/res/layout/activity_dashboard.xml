@@ -7,10 +7,10 @@
     tools:context="vgan.veganfoodie.Modules.Dashboard.DashboardActivity">
 
 
-    <TextView
-        android:id="@+id/descriptionView"
+    <Button
+        android:id="@+id/goto_restaurants_btn"
         android:layout_width="match_parent"
-        android:layout_height="138dp"
-        android:layout_weight="1"
-        android:text="TextView" />
+        android:layout_height="wrap_content"
+        android:onClick="showRestaurants"
+        android:text="@string/goto_restaurants_txt" />
 </LinearLayout>
