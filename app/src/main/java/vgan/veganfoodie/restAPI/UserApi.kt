@@ -33,44 +33,48 @@ class UserService {
 
     companion object {
 
-        fun api(): UserAPI {
-            return RetroFitManager.instance.retrofit.create(UserAPI::class.java)
-        }
+        val api: UserAPI
+            get() = RetroFitManager.instance.retrofit.create(UserAPI::class.java)
+
 
         fun login(email: String, password: String, completion: (user: User?) -> Unit){
-            val loginReq = UserService.api().login(email, password)
-            loginReq.enqueue(object: Callback<User> {
-                override fun onResponse(call: Call<User>?, response: Response<User>?) {
-                    var user = response?.body()
-                    if (user != null) {
-                        completion(user)
-                    }else{
-                        completion(null)
-                    }
-                }
 
-                override fun onFailure(call: Call<User>?, t: Throwable?) {
+            val loginReq = UserService.api.login(email, password)
+            loginReq.enqueueWithCompletion({ t, response -> Unit
+                 var user = response?.body()
+                if (user != null) {
+                    completion(user)
+                }else{
                     completion(null)
                 }
             })
         }
 
         fun signUp(email: String, password: String, completion: (user: User?) -> Unit) {
-            val signupReq = UserService.api().signUp(email, password)
-            signupReq.enqueue(object: Callback<User> {
-                override fun onResponse(call: Call<User>?, response: Response<User>?) {
-                    var user = response?.body()
-                    if (user != null) {
-                        completion(user)
-                    }else{
-                        completion(null)
-                    }
-                }
+            val signupReq = UserService.api.signUp(email, password)
 
-                override fun onFailure(call: Call<User>?, t: Throwable?) {
+            signupReq.enqueueWithCompletion({ t, response -> Unit
+                var user = response?.body()
+                if (user != null) {
+                    completion(user)
+                }else{
                     completion(null)
                 }
             })
+
         }
     }
+}
+
+
+// extension
+fun <T> Call<T>.enqueueWithCompletion(completion: (t: Throwable?, response: Response<T>?) -> Unit) {
+    this.enqueue(object : Callback<T> {
+        override fun onResponse(call: Call<T>?, response: Response<T>?) {
+            completion(null, response)
+        }
+        override fun onFailure(call: Call<T>?, t: Throwable) {
+            completion(t, null)
+        }
+    })
 }

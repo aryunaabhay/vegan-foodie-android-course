@@ -3,8 +3,8 @@ package vgan.veganfoodie.Modules.Login
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
+import org.jetbrains.anko.design.snackbar
 import vgan.veganfoodie.Interfaces.AppViewModel
 import vgan.veganfoodie.Interfaces.BaseActivity
 import vgan.veganfoodie.Modules.Dashboard.DashboardRouter
@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity(), BaseActivity {
         val password = this.password_field.text.toString()
         (this.viewModel as? LoginViewModel)?.login(email, password,{ result -> Unit
             if (result != null) {
-                Toast.makeText(this.applicationContext, result.message, Toast.LENGTH_SHORT).show()
+                snackbar(view,  result.message)
                 if (result.state == true) {
                     DashboardRouter.dashboard(this)
                 }
