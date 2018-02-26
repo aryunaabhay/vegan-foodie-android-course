@@ -1,5 +1,6 @@
 package vgan.veganfoodie.Modules.Login
 
+import android.arch.lifecycle.ViewModel
 import vgan.veganfoodie.AppDelegate
 import vgan.veganfoodie.Interfaces.AppViewModel
 import vgan.veganfoodie.R
@@ -11,11 +12,10 @@ import vgan.veganfoodie.restAPI.UserService
  */
 
 
-class LoginViewModel: AppViewModel {
-    companion object {
-        val emailTxtIdentifier = "emailTxt"
-        val passTxtIdentifier = "passTxt"
-    }
+class LoginViewModel: ViewModel(), AppViewModel {
+
+    var emailTxt: String = ""
+    var passTxt: String = ""
 
     fun login(email: String, password: String, completion: (result: Result) -> Unit ) {
         var appCtx = AppDelegate.instance.applicationContext
