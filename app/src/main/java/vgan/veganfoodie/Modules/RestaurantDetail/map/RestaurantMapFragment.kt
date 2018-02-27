@@ -9,17 +9,17 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.android.synthetic.main.fragment_restaurant_map.*
 import vgan.veganfoodie.Entities.Restaurant
 import vgan.veganfoodie.R
 
 
 class RestaurantMapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
-    private lateinit var marker: Marker
+    private var marker: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,21 +32,35 @@ class RestaurantMapFragment : Fragment(), OnMapReadyCallback {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater!!.inflate(R.layout.fragment_restaurant_map, container, false)
+    }
 
-        val mapFragment: SupportMapFragment  = this.map as SupportMapFragment
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val mapFragment: SupportMapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
     fun updateRestaurant(restaurant: Restaurant) {
-       this.marker.position = LatLng(-35.0, 100.0)
+        this.setMarker(LatLng(restaurant.lat, restaurant.long))
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        this.marker = mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        this.mMap = googleMap
+    }
+
+    fun setMarker(coordinates: LatLng){
+        val mark = this.marker
+        if (mark != null) {
+            mark.position = coordinates
+        }else {
+            this.marker = this.mMap.addMarker(MarkerOptions().position(coordinates))
+        }
+        // 1 world, 5 continent, 10 city, 15 streets, 20 buildings
+        // tilt : inclination in grades
+        // bearing: rotation
+        val camPosition = CameraPosition.builder().zoom(15f)
+        camPosition.target(coordinates)
+        this.mMap.moveCamera(CameraUpdateFactory.newCameraPosition(camPosition.build()))
     }
 
     companion object {
